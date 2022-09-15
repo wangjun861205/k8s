@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: with-baby-auth-pg
+spec:
+  resources:
+    requests:
+      storage: 2Gi
+  volumeMode: Filesystem
+  storageClassName: "manual"
+  accessModes:
+    - ReadWriteOnce
+  volumeName: with-baby-auth-pg

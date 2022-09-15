@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: with-baby-auth
+data:
+  config: |
+    DATABASE_URL=postgres://postgres:postgres@${WITH_BABY_AUTH_PG_SERVICE_HOST}:${WITH_BABY_AUTH_PG_SERVICE_PORT}/with-baby-auth
+    JWT_KEY=123456

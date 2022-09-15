@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: with-baby-auth-pg
+spec:
+  selector:
+    app: with-baby-auth-pg
+  type: NodePort
+  ports:
+  - port: 5432
+    targetPort: 5432

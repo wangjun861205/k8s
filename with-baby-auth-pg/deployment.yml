@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: with-baby-auth-pg
+spec:
+  selector:
+    matchLabels:
+      app: with-baby-auth-pg
+  template:
+    metadata:
+      labels:
+        app: with-baby-auth-pg
+    spec:
+      containers:
+      - name: with-baby-auth-pg
+        image: postgres:14
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: 500m
+        ports:
+        - containerPort: 5432
+        env:
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres
+          - name: POSTGRES_DB
+            value: with-baby-auth
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: with-baby-auth-pg
+      
+      volumes:
+        - name: with-baby-auth-pg
+          persistentVolumeClaim:
+            claimName: with-baby-auth-pg
+      
+          

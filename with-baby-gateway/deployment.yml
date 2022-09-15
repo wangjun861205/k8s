@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: with-baby-gateway
+  labels:
+    app: with-baby-gateway
+spec:
+  selector:
+    matchLabels:
+      app: with-baby-gateway
+  template:
+    metadata:
+      labels:
+        app: with-baby-gateway
+    spec:
+      containers:
+      - name: with-baby-gateway
+        image: with-baby-gateway:v0.1
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /usr/local/nginx/conf/nginx.conf
+            name: config
+            subPath: config
+        resources:
+          limits:
+            memory: 1Gi
+            cpu: 500m
+      
+      volumes:
+        - name: config
+          configMap: 
+            name: with-baby-gateway
+    
